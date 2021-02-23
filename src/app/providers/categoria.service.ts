@@ -1,3 +1,5 @@
+import { environment } from './../../environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Categoria } from './../models/categoria';
 import { Injectable } from '@angular/core';
 
@@ -6,10 +8,12 @@ import { Injectable } from '@angular/core';
 })
 export class CategoriaService {
 
+  private readonly apiCategoria = `${environment.URL_BACKEND}/categoria`;
+
   categorias = [];  
   categoriasSalvas = [];  
   categoriasMerge = [];  
-  constructor() { 
+  constructor(private httpclient: HttpClient) { 
   }
 
   gerarCategoria(identificador, nome, pai) {
@@ -97,11 +101,11 @@ export class CategoriaService {
   }
 
   getCategoriasPaginada(page) {
-    return this.gerarCategoriasPaginada(page);
+    return this.httpclient.get<Categoria[]>(this.apiCategoria + '/listar');
   }
 
   getCategorias() {
-    return this.gerarCategorias();
+      return this.httpclient.get<Categoria[]>(this.apiCategoria + '/2');
   }
 
   save(categoria:Categoria) {

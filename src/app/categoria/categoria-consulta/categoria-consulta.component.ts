@@ -1,7 +1,7 @@
-import { CategoriaService } from './../providers/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import * as _ from "lodash";
+import { CategoriaService } from 'src/app/providers/categoria.service';
 
 @Component({
   selector: 'app-categoria-consulta',
@@ -32,7 +32,9 @@ export class CategoriaConsultaComponent implements OnInit {
 	}
 
   search(page, pageSize) {
-		this.categorias = this.categoriaService.getCategoriasPaginada(page);
+		this.categoriaService.getCategoriasPaginada(page).subscribe(categorias => {
+			this.categorias = categorias;
+		});
     if (this.nome != "") {
       this.categorias = _.filter(this.categorias,{nome:this.nome});
     }

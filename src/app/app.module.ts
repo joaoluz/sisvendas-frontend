@@ -7,11 +7,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { CategoriaCreateComponent } from './categoria-create/categoria-create.component';
-import { CategoriaConsultaComponent } from './categoria-consulta/categoria-consulta.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CategoriaPaiPipe } from './pipe/categoria-pai.pipe';
+import { CategoriaConsultaComponent } from './categoria/categoria-consulta/categoria-consulta.component';
+import { CategoriaCreateComponent } from './categoria/categoria-create/categoria-create.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes = [
    { path: 'categoria', component: CategoriaConsultaComponent },
@@ -37,7 +39,9 @@ const appRoutes: Routes = [
     ),
     AngularFontAwesomeModule,
     BrowserAnimationsModule, 
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

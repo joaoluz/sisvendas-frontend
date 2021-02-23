@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "sisvenda-frontend"
+  "defaultProject": "sisvenda-frontend",
+  "cli": {
+    "analytics": "f11661c8-b905-4f02-9f28-4811e0b75b00"
+  }
 }
