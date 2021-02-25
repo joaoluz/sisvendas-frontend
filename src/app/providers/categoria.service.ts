@@ -1,7 +1,8 @@
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { Categoria } from './../models/categoria';
 import { Injectable } from '@angular/core';
+import {Pageable} from './pageable';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class CategoriaService {
   }
 
   getCategoriasPaginada(page) {
-    return this.httpclient.get<Categoria[]>(this.apiCategoria + '/listar');
+    return this.httpclient.get<Pageable>(this.apiCategoria + '/listar', {
+      params: new HttpParams().set('page', page)
+    } );
   }
 
   getCategoriasPais() {

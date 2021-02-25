@@ -1,66 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import swal from 'sweetalert2';
-import * as _ from "lodash";
-import { CategoriaService } from 'src/app/providers/categoria.service';
+import {CategoriaService} from 'src/app/providers/categoria.service';
 
 @Component({
-  selector: 'app-categoria-consulta',
-  templateUrl: './categoria-consulta.component.html',
-  styleUrls: ['./categoria-consulta.component.css']
+    selector: 'app-categoria-consulta',
+    templateUrl: './categoria-consulta.component.html',
+    styleUrls: ['./categoria-consulta.component.css']
 })
 export class CategoriaConsultaComponent implements OnInit {
+    paginacao: any;
 
-  totalItems: any;
-	page: any = 0;
-	pageSize: any = 10;
-	previousPage: any;
-  categorias = new Array();
-  nome = '';
-  
-  constructor(private categoriaService:CategoriaService) { }
-
-  ngOnInit() {
-   this.search(1,10);
-   this.totalItems = 15;
-  }
-
-  loadPage(page: number) {
-		if (page !== this.previousPage) {
-			this.previousPage = page;
-			this.search(page, this.pageSize);
-		}
-	}
-
-  search(page, pageSize) {
-		this.categoriaService.getCategoriasPaginada(page).subscribe(categorias => {
-			this.categorias = categorias;
-		});
-    if (this.nome != "") {
-      this.categorias = _.filter(this.categorias,{nome:this.nome});
+    constructor(private categoriaService: CategoriaService) {
     }
-  }
 
-  delete(index) {
-		swal({
-			title: 'Você tem certeza?',
-			text: "Deseja realmente excluir esta Categoria!",
-			type: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Excluir!',
-			cancelButtonText: 'Cancelar!',
-			reverseButtons: true
-		}).then((result) => {
-			if (result.value) {
-					this.categorias.splice(index, 1);
-					swal(
-						'Deletado!',
-						'Categoria excluída com sucesso.',
-						'success'
-					)
-			}
-		})
-	}
+    ngOnInit() {
+        this.search(0);
+    }
 
+    loadPage(page) {
+        this.search(page - 1);
+    }
+
+    search(page) {
+        this.categoriaService.getCategoriasPaginada(page).subscribe(pageable => {
+            this.paginacao = pageable;
+            this.paginacao.pageable.page = this.paginacao.pageable.page + 1;
+        });
+    }
+
+    delete(index) {
+        swal({
+            title: 'Você tem certeza?',
+            text: 'Deseja realmente excluir esta Categoria!',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Excluir!',
+            cancelButtonText: 'Cancelar!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.value) {
+                this.paginacao.content.splice(index, 1);
+                swal(
+                    'Deletado!',
+                    'Categoria excluída com sucesso.',
+                    'success'
+                );
+            }
+        });
+    }
 }

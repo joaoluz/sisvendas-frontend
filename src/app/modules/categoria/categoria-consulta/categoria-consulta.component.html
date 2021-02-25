@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="animated fadeIn">
-    <form novalidate (ngSubmit)="search()" #f="ngForm" class="form-validation">
+    <form novalidate (ngSubmit)="search(paginacao.pageable.page)" #f="ngForm" class="form-validation">
       <div class="row">
         <div class="col-md-12 mb-3">
           <div class="card mt-30">
@@ -46,7 +46,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let categoria of categorias; let i = index;">
+          <ng-container *ngIf="paginacao">
+            <tr *ngFor="let categoria of paginacao.content">
               <td>{{ categoria.nome}}</td>
               <td>{{ categoria.categoriaPai | categoriaPai }}</td>
               <td>
@@ -61,10 +62,24 @@
                 </a>
               </td>
             </tr>
+          </ng-container>
+          <ng-container *ngIf="!paginacao">
+            <tr>
+              <td colspan="3"><span class="text-center">Nenhum Registro Encontrado</span></td>
+            </tr>
+          </ng-container>
           </tbody>
         </table>
-        <ngb-pagination size="lg" class="d-flex justify-content-center" [collectionSize]="totalItems" [pageSize]="pageSize" [(page)]="page"
-          [rotate]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+
+        <pre *ngIf="paginacao">Total de registros: {{paginacao.total}}</pre>
+        <ngb-pagination *ngIf="paginacao" class="d-flex justify-content-center"
+                        [collectionSize]="paginacao.total"
+                        [pageSize]="paginacao.pageable.pageSize"
+                        [(page)]="paginacao.pageable.page"
+                        [boundaryLinks]="false"
+                        [ellipses]="false"
+                        (pageChange)="loadPage($event)">
+        </ngb-pagination>
       </div>
     </div>
   </div>
