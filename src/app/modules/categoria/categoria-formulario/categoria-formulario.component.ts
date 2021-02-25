@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { CategoriaService } from 'src/app/providers/categoria.service';
-import { Categoria } from 'src/app/models/categoria';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {CategoriaService} from 'src/app/providers/categoria.service';
+import {Categoria} from 'src/app/models/categoria';
+import {MessageService} from '../../../providers/message.service';
 
 @Component({
   selector: 'app-categoria-formulario',
@@ -14,6 +15,7 @@ export class CategoriaFormularioComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
     private categoriaService:CategoriaService,
     private toastr: ToastrService,
+    private messageService: MessageService,
     private router: Router) { }
 
   categoria = new Categoria();
@@ -21,27 +23,23 @@ export class CategoriaFormularioComponent implements OnInit {
   disable;
   edit;
   ngOnInit() {
-    this.categoriaService.getCategorias().subscribe(value => {
-        this.categorias = value;
-    });
+      this.categoriaService.getCategoriasPais().subscribe(value => {
+          this.categorias = value;
+      });
 
-    console.log(this.categorias);
-
-    this.route.url.subscribe(value => {
-			if (value[1].path == 'visualizar') {
-				this.disable = true;
-			} else if (value[1].path == 'editar') {
-				this.edit = true;
-				this.disable = false;
-			} else {
-				this.disable = false;
-			}
-		});
-		this.route.params.subscribe(params => {
-			if (params.id != undefined) {
-				this.getById(params.id);
-			}
-		});
+      if (this.route.routeConfig.path == 'visualizar') {
+          this.disable = true;
+      } else if (this.route.routeConfig.path == 'editar') {
+          this.edit = true;
+          this.disable = false;
+      } else {
+          this.disable = false;
+      }
+      this.route.params.subscribe(params => {
+          if (params.id != undefined) {
+              this.getById(params.id);
+          }
+      });
   }
 
   getById(identificador) {
@@ -53,8 +51,11 @@ export class CategoriaFormularioComponent implements OnInit {
   }
 
   save() {
-    this.categoriaService.save(this.categoria);
-    this.toastr.success('Categoria cadastrada com sucesso!');
-    this.router.navigate(['categoria'])
+    this.categoriaService.save(this.categoria).subscribe(response => {
+        this.messageService.tratarSucesso('Categoria cadastrada com sucesso!');
+        this.router.navigate(['/categoria/listar'])
+    }, erros => {
+        this.messageService.tratarErro(erros);
+    });
   }
 }
