@@ -1,4 +1,3 @@
-import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,11 +5,11 @@ import { CategoriaService } from 'src/app/providers/categoria.service';
 import { Categoria } from 'src/app/models/categoria';
 
 @Component({
-  selector: 'app-categoria-create',
-  templateUrl: './categoria-create.component.html',
-  styleUrls: ['./categoria-create.component.css']
+  selector: 'app-categoria-formulario',
+  templateUrl: './categoria-formulario.component.html',
+  styleUrls: ['./categoria-formulario.component.css']
 })
-export class CategoriaCreateComponent implements OnInit {
+export class CategoriaFormularioComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
     private categoriaService:CategoriaService,

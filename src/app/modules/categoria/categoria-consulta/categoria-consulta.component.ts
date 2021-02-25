@@ -20,6 +20,7 @@ export class CategoriaConsultaComponent implements OnInit {
   constructor(private categoriaService:CategoriaService) { }
 
   ngOnInit() {
+  	debugger
    this.search(1,10);
    this.totalItems = 15;
   }
