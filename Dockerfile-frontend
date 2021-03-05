@@ -1,0 +1,14 @@
+# Estagio 1 - Será responsavel em construir nossa aplicação
+FROM node:14.16-alpine as node
+WORKDIR /home/app
+COPY ./sisvendas-frontend/package.json /home/app/
+RUN npm install
+COPY ./sisvendas-frontend/ /home/app/
+RUN npm run ng build -- --prod
+
+# Estagio 2 - Será responsavel por expor a aplicação
+FROM nginx:alpine
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=node /home/app/dist/sisvendas-frontend /usr/share/nginx/html
+COPY --from=node /home/app/nginx-custom.conf /etc/nginx/conf.d/default.conf
+EXPOSE 4200 80
