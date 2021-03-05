@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sisvenda-frontend": {
+    "sisvendas-frontend": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sisvenda-frontend",
+            "outputPath": "dist/sisvendas-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,18 +54,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sisvenda-frontend:build"
+            "browserTarget": "sisvendas-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sisvenda-frontend:build:production"
+              "browserTarget": "sisvendas-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sisvenda-frontend:build"
+            "browserTarget": "sisvendas-frontend:build"
           }
         },
         "test": {
@@ -100,7 +100,7 @@
         }
       }
     },
-    "sisvenda-frontend-e2e": {
+    "sisvendas-frontend-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -108,11 +108,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sisvenda-frontend:serve"
+            "devServerTarget": "sisvendas-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sisvenda-frontend:serve:production"
+              "devServerTarget": "sisvendas-frontend:serve:production"
             }
           }
         },
@@ -128,7 +128,7 @@
       }
     }
   },
-  "defaultProject": "sisvenda-frontend",
+  "defaultProject": "sisvendas-frontend",
   "cli": {
     "analytics": "f11661c8-b905-4f02-9f28-4811e0b75b00"
   }

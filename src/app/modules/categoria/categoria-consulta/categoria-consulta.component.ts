@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import swal from 'sweetalert2';
 import {CategoriaService} from 'src/app/providers/categoria.service';
+import {Categoria} from '../../../models/categoria';
 
 @Component({
     selector: 'app-categoria-consulta',
@@ -9,11 +10,12 @@ import {CategoriaService} from 'src/app/providers/categoria.service';
 })
 export class CategoriaConsultaComponent implements OnInit {
     paginacao: any;
-
+    categoria: Categoria;
     constructor(private categoriaService: CategoriaService) {
     }
 
     ngOnInit() {
+        this.categoria = new Categoria();
         this.search(0);
     }
 
