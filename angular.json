@@ -16,6 +16,8 @@
             "outputPath": "dist/sisvendas-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "baseHref": "/sisvendas/",
+            "deployUrl": "/sisvendas/",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
