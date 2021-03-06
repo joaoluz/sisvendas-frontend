@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Categoria } from './../models/categoria';
 import { Injectable } from '@angular/core';
-import {Pageable} from './pageable';
+import {Pageable} from '../models/pageable';
 
 @Injectable({
   providedIn: 'root'
