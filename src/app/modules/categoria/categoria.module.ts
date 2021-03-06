@@ -4,9 +4,8 @@ import {CategoriaConsultaComponent} from './categoria-consulta/categoria-consult
 import {CategoriaPaiPipe} from '../../pipe/categoria-pai.pipe';
 import {CategoriaFormularioComponent} from './categoria-formulario/categoria-formulario.component';
 import {FormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {NgbAlertModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -15,10 +14,9 @@ import {NgbAlertModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     CategoriaPaiPipe
   ],
   imports: [
-    CommonModule,
     FormsModule,
-    AngularFontAwesomeModule,
-    NgbPaginationModule.forRoot(),
+    FontAwesomeModule,
+    NgbPaginationModule,
     NgbAlertModule,
     CategoriaRoutingModule
   ],

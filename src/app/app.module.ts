@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {APP_INITIALIZER, NgModule} from '@angular/core';
-import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
 
@@ -11,22 +10,23 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {NgbAlertModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-      keycloak.init({
-        config: {
-          url: 'http://localhost:8080/auth',
-          realm: 'your-realm',
-          clientId: 'your-client-id',
-        },
-        initOptions: {
-          onLoad: 'check-sso',
-          silentCheckSsoRedirectUri:
-              window.location.origin + '/assets/silent-check-sso.html',
-        },
-      });
-}
+// function initializeKeycloak(keycloak: KeycloakService) {
+//   return () =>
+//       keycloak.init({
+//         config: {
+//           url: 'http://localhost:8080/auth',
+//           realm: 'your-realm',
+//           clientId: 'your-client-id',
+//         },
+//         initOptions: {
+//           onLoad: 'check-sso',
+//           silentCheckSsoRedirectUri:
+//               window.location.origin + '/assets/silent-check-sso.html',
+//         },
+//       });
+// }
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,19 +37,21 @@ function initializeKeycloak(keycloak: KeycloakService) {
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFontAwesomeModule,
     ToastrModule.forRoot(),
-    NgbPaginationModule.forRoot(),
+    NgbPaginationModule,
     NgbAlertModule,
     AppRoutingModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    FontAwesomeModule
   ],
-  providers: [{
-    provide: APP_INITIALIZER,
-    useFactory: initializeKeycloak,
-    multi: true,
-    deps: [KeycloakService],
-  }],
+  providers: [
+  //     {
+  //   provide: APP_INITIALIZER,
+  //   useFactory: initializeKeycloak,
+  //   multi: true,
+  //   deps: [KeycloakService],
+  // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
