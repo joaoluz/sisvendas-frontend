@@ -52,13 +52,13 @@
               <td>{{ categoria.categoriaPai | categoriaPai }}</td>
               <td>
                 <a class="btn btn-default col-sm-2" [routerLink]="['/categoria/editar', categoria.id]">
-                  <fa name="edit"></fa>
+                    <i class="fa fa-edit"></i>
                 </a>
                 <a class="btn btn-default col-sm-2" [routerLink]="['/categoria/visualizar', categoria.id]">
-                  <fa name="search"></fa>
+                  <i class="fa fa-eye"></i>
                 </a>
                 <a class="btn btn-default col-sm-2" (click)="delete(i)">
-                  <fa name="trash"></fa>
+                  <i class="fa fa-trash"></i>
                 </a>
               </td>
             </tr>
@@ -70,16 +70,17 @@
           </ng-container>
           </tbody>
         </table>
-
-        <pre *ngIf="paginacao">Total de registros: {{paginacao.total}}</pre>
-        <ngb-pagination *ngIf="paginacao" class="d-flex justify-content-center"
-                        [collectionSize]="paginacao.total"
-                        [pageSize]="paginacao.pageable.pageSize"
-                        [(page)]="paginacao.pageable.page"
-                        [boundaryLinks]="false"
-                        [ellipses]="false"
-                        (pageChange)="loadPage($event)">
-        </ngb-pagination>
+        <ng-container *ngIf="paginacao">
+          <pre>Total de registros: {{paginacao.total}}</pre>
+          <ngb-pagination class="d-flex justify-content-center"
+                          [collectionSize]="paginacao.total"
+                          [pageSize]="paginacao.pageable.pageSize"
+                          [(page)]="paginacao.pageable.page"
+                          [boundaryLinks]="false"
+                          [ellipses]="false"
+                          (pageChange)="loadPage($event)">
+          </ngb-pagination>
+        </ng-container>
       </div>
     </div>
   </div>

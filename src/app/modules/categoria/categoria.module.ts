@@ -6,6 +6,7 @@ import {CategoriaFormularioComponent} from './categoria-formulario/categoria-for
 import {FormsModule} from '@angular/forms';
 import {NgbAlertModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     NgbPaginationModule,
     NgbAlertModule,
-    CategoriaRoutingModule
+    CategoriaRoutingModule,
+    CommonModule
   ],
   providers: [],
 })
