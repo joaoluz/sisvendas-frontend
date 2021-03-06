@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 const routes: Routes = [
     {
         path: 'categoria',
-        loadChildren: './modules/categoria/categoria.module#CategoriaModule'
+        loadChildren: () => import('./modules/categoria/categoria.module').then(m => m.CategoriaModule)
     },
     {
         path: '**',
