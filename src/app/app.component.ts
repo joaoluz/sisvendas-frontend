@@ -12,6 +12,9 @@ export class AppComponent {
   constructor(private keycloakService: KeycloakService) {
   }
 
+  sair:string = 'Sair';
+  voltar_inicio:string = 'Voltar ao inicio';
+
   logout() {
     this.keycloakService.logout()
   }

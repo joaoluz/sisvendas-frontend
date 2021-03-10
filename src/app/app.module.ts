@@ -8,7 +8,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
-import {NgbAlertModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlertModule, NgbPaginationModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import {KeycloakAngularModule, KeycloakService} from 'keycloak-angular';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
@@ -42,7 +42,8 @@ function initializeKeycloak(keycloak: KeycloakService) {
         NgbAlertModule,
         AppRoutingModule,
         KeycloakAngularModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        NgbTooltipModule
     ],
     providers: [
         {
