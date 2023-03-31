@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCoffee, faEdit, faEye, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { CategoriaService } from 'src/app/providers/categoria.service';
 import Swal from 'sweetalert2';
 import { Categoria } from '../../../models/categoria';
@@ -11,11 +12,15 @@ import { Categoria } from '../../../models/categoria';
 export class CategoriaConsultaComponent implements OnInit {
     paginacao: any;
     categoria: Categoria = new Categoria();
+    faTrash = faTrash;
+    faEye = faEye;
+    faEdit = faEdit;
     constructor(private categoriaService: CategoriaService) {
     }
 
     ngOnInit() {
         this.search(0);
+
     }
 
     loadPage(page:any) {

@@ -52,13 +52,13 @@
               <td>{{ categoria.categoriaPai | categoriaPai }}</td>
               <td>
                 <a class="btn btn-default col-sm-2" [routerLink]="['/categoria/editar', categoria.id]">
-                    <i class="fa fa-edit"></i>
+                  <fa-icon [icon]="faEdit"></fa-icon>
                 </a>
                 <a class="btn btn-default col-sm-2" [routerLink]="['/categoria/visualizar', categoria.id]">
-                  <i class="fa fa-eye"></i>
+                  <fa-icon [icon]="faEye"></fa-icon>
                 </a>
                 <a class="btn btn-default col-sm-2" (click)="delete(i)">
-                  <i class="fa fa-trash"></i>
+                  <fa-icon [icon]="faTrash"></fa-icon>
                 </a>
               </td>
             </tr>
